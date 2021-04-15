@@ -1,0 +1,24 @@
+/zip-data/node_modules
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/zip_data/.pnp
+/zip_data.pnp.js
+
+# testing
+/zip_data/coverage
+
+# production
+/zip_data/build
+
+# misc
+/zip_data.DS_Store
+/zip_data.env.local
+/zip_data.env.development.local
+/zip_data.env.test.local
+/zip_data.env.production.local
+
+/zip_datanpm-debug.log*
+/zip_datayarn-debug.log*
+/zip_datayarn-error.log*
