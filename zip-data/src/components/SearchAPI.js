@@ -6,37 +6,24 @@ class SearchAPI extends Component {
     super(props);
     this.state = {
       apiData: [],
-      pokemon: "",
       found: false,
+      zipcode: "",
+      city: "",
+      state: "",
+      latitude: "",
+      longitude: "",
+      population: "",
+      wages: "",
     };
   }
 
   handleInputChange = (event) => {
-    this.setState({ pokemon: event.target.value });
+    this.setState({ zipcode: event.target.value });
   };
 
-  // handleSearchClick = () => {
-  //     let pokemonName = this.state.pokemon;
-  //     let linkToAPI = 'https://pokeapi.co/api/v2/pokemon/'+pokemonName;
-  //     fetch(linkToAPI)
-  //         .then((response) => {
-  //             if(response.status === 404){
-  //                 return;
-  //             }
-  //             return response.json();
-  //         })
-  //         .then((data) => { //data is response.json()
-  //             this.setState({apiData: data});
-  //         })
-  //         .catch((error) => {
-  //             console.error('Error:', error);
-  //         });
-
-  //}
-
   handleSearchClick = async () => {
-    let pokemonName = this.state.pokemon;
-    let linkToAPI = "https://pokeapi.co/api/v2/pokemon/" + pokemonName;
+    let zipcode = this.state.zipcode;
+    let linkToAPI = "https://ctp-zip-api.herokuapp.com/zip/" + zipcode;
 
     try {
       let response = await axios.get(linkToAPI);
@@ -58,6 +45,7 @@ class SearchAPI extends Component {
     let currData = this.state.apiData;
     let foundMatch = this.state.found;
     let table = [];
+    console.log(currData);
     //found is false when we get 404 error
     if (!foundMatch) {
       table.push(
@@ -67,12 +55,15 @@ class SearchAPI extends Component {
       );
       return table;
     } else {
-      let height = currData.height;
-      let weight = currData.weight;
+      let zipcodeId = currData[0].recordNumber;
+      let zipcode = currData[0].Zipcode;
+      let city = currData[0].City;
+      let state = currData[0].State;
       table.push(
-        <tr key={currData.id}>
-          <td>Height: {height}</td>
-          <td>Weight: {weight}</td>
+        <tr key={zipcodeId}>
+          <td>Zipcode: {zipcode}</td>
+          <td>City: {city}</td>
+          <td>State: {state}</td>
         </tr>
       );
       return table;
@@ -83,12 +74,12 @@ class SearchAPI extends Component {
     return (
       <div className="container">
         <div className="search">
-          <h3>Search Pokemon:</h3>
+          <h3>Search zipcode:</h3>
           <input
             type="text"
-            value={this.state.pokemon}
+            value={this.state.zipcode}
             onChange={this.handleInputChange}
-            placeholder="Enter Pokemon name"
+            placeholder="Enter zipcode"
           />
           <button className="search-button" onClick={this.handleSearchClick}>
             Search
