@@ -55,17 +55,21 @@ class ZipSearchAPI extends Component {
       );
       return table;
     } else {
-      let zipcodeId = currData[0].recordNumber;
-      let zipcode = currData[0].Zipcode;
-      let city = currData[0].City;
-      let state = currData[0].State;
-      table.push(
-        <tr key={zipcodeId}>
-          <td>Zipcode: {zipcode}</td>
-          <td>City: {city}</td>
-          <td>State: {state}</td>
-        </tr>
-      );
+      let i = 0;
+      currData.forEach(zip => {
+        let zipcodeId = currData[i].recordNumber;
+        let zipcode = currData[i].Zipcode;
+        let city = currData[i].City;
+        let state = currData[i].State;
+        table.push(
+          <tr key={zipcodeId}>
+            <td>Zipcode: {zipcode}</td>
+            <td>City: {city}</td>
+            <td>State: {state}</td>
+          </tr>
+        );
+        i++;
+      });
       return table;
     }
   };
