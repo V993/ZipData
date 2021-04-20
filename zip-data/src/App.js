@@ -1,12 +1,13 @@
 import logo from "./logo.svg";
 import "./App.css";
-import "./components/SearchAPI";
-import SearchAPI from "./components/SearchAPI";
+import ZipSearchAPI from "./components/ZipSearchAPI";
+import CitySearchAPI from "./components/CitySearchAPI"
 
 function App() {
   return (
     <div className="App">
-      <SearchAPI />
+      <ZipSearchAPI />
+      <CitySearchAPI />
     </div>
   );
 }
