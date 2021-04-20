@@ -1,8 +1,9 @@
 import { Component } from "react";
 import axios from "axios";
 
+
 class ZipSearchAPI extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       apiData: [],
@@ -49,7 +50,7 @@ class ZipSearchAPI extends Component {
     //found is false when we get 404 error
     if (!foundMatch) {
       table.push(
-        <tr key={-1}>
+        <tr key={ -1 }>
           <td>No Results</td>
         </tr>
       );
@@ -60,10 +61,16 @@ class ZipSearchAPI extends Component {
       let city = currData[0].City;
       let state = currData[0].State;
       table.push(
-        <tr key={zipcodeId}>
-          <td>Zipcode: {zipcode}</td>
-          <td>City: {city}</td>
-          <td>State: {state}</td>
+        <tr key={ zipcodeId }>
+          <tr>
+            <td>Zipcode: { zipcode }</td>
+          </tr>
+          <tr>
+            <td>City: { city }</td>
+          </tr>
+          <tr>
+            <td>State: { state }</td>
+          </tr>
         </tr>
       );
       return table;
@@ -72,16 +79,16 @@ class ZipSearchAPI extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="header">
         <div className="search">
           <h3>Search by zipcode:</h3>
           <input
             type="text"
-            value={this.state.zipcode}
-            onChange={this.handleInputChange}
+            value={ this.state.zipcode }
+            onChange={ this.handleInputChange }
             placeholder="Enter zipcode"
           />
-          <button className="search-button" onClick={this.handleSearchClick}>
+          <button className="search-button" onClick={ this.handleSearchClick }>
             Search
           </button>
         </div>
@@ -89,7 +96,7 @@ class ZipSearchAPI extends Component {
         <br />
 
         <table id="data">
-          <tbody>{this.makeTable()}</tbody>
+          <tbody>{ this.makeTable() }</tbody>
         </table>
       </div>
     );
