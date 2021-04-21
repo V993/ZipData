@@ -1,5 +1,6 @@
 import { Component } from "react";
 import axios from "axios";
+import "./style.css"
 
 class ZipSearchAPI extends Component {
   constructor (props) {
@@ -58,23 +59,39 @@ class ZipSearchAPI extends Component {
       let i = 0;
       currData.forEach(zip => {
         let zipcodeId = currData[i].recordNumber;
-        let zipcode = currData[i].Zipcode;
+        // let zipcode = currData[i].Zipcode;
         let city = currData[i].City;
         let state = currData[i].State;
+        let totalWages = currData[i].TotalWages;
+        let lon = currData[i].Long;
+        let lat = currData[i].Lat;
+
+        let population = currData[i].EstimatedPopulation;
         table.push(
-          <tr key={ zipcodeId }>
-            <tr>
-              <td>Zipcode: { zipcode }</td>
+          <div className="box">
+            <tr key={ zipcodeId }>
+              <tr>
+                <td>{ city }</td>
+              </tr>
+
+              <tr>
+                <td>State: { state }</td>
+              </tr>
+              <tr>
+                <td>Location: ( { lat } , { lon } )</td>
+              </tr>
+              <tr>
+                <td>Population: { population }</td>
+              </tr>
+
+              <tr>
+                <td>Total Wages: { totalWages }</td>
+              </tr>
             </tr>
 
-            <tr>
-              <td>City: { city }</td>
-            </tr>
 
-            <tr>
-              <td>State: { state }</td>
-            </tr>
-          </tr>
+          </div>
+
         );
         i++;
       });
